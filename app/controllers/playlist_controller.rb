@@ -1,42 +1,69 @@
 class PlaylistsController < ApplicationController
 
-  # get '/songs/new' do #loads new form
-  #   erb :new
-  # end
+  #Need to update so that only current user can view playlist
 
-  get '/playlists' do #loads index page
-    "You are in the playlist controller"
-    # @songs = Song.all
-    # erb :index
+  get '/playlists/new' do #loads new form
+    redirect_if_not_logged_in
+    erb :'playlists/new'
   end
 
-  # get '/songs/:id' do  #loads show page
-  #   @song = Song.find_by_id(params[:id])
-  #   erb :show
-  # end
-  #
-  # get '/songs/:id/edit' do #loads edit form
-  #   @song = Song.find_by_id(params[:id])
-  #   erb :edit
-  # end
-  #
-  # patch '/songs/:id' do  #updates a recipe
-  #   @song = Song.find_by_id(params[:id])
-  #   @song.name = params[:name]
-  #   @song.genre = params[:genre]
-  #   # @song.artist_id = params[:artist_id]
-  #   @song.save
-  #   redirect to "/songs/#{@song.id}"
-  # end
-  #
-  # post '/songs' do  #creates a recipe
-  #   @song = Song.create(params)
-  #   redirect to "/songs/#{@song.id}"
-  # end
-  #
-  # delete '/songs/:id' do #destroy action
-  #   @song = Song.find_by_id(params[:id])
-  #   @song.delete
-  #   redirect to '/songs'
-  # end
+
+  get '/playlists' do #loads index page
+    if logged_in?
+          @user = current_user.id
+          @playlists = Playlist.where("user_id = #{@user}")
+          # binding.pry
+            #.where("orders_count = '2'")
+            #SELECT * FROM playlists WHERE user_id = current_user;
+        erb :'playlists/index'
+    else
+        redirect_if_not_logged_in
+    end
+    end
+
+
+  get '/playlists/:id' do  #loads show page
+    redirect_if_not_logged_in
+    @playlist = Playlist.find_by_id(params[:id])
+    erb :'playlists/show'
+  end
+
+
+  get '/playlists/:id/edit' do #loads edit form
+    redirect_if_not_logged_in
+    @playlist = Playlist.find_by_id(params[:id])
+    # binding.pry
+    erb :'playlists/edit'
+  end
+
+  patch '/playlists/:id' do  #updates a recipe
+    redirect_if_not_logged_in
+    @playlist = Playlist.find_by_id(params[:id])
+    # binding.pry
+    @playlist.name = params[:playlist][:name]
+    # @playlist.genre = params[:genre]
+    # @song.artist_id = params[:artist_id]
+    @playlist.save
+    redirect to "/playlists"
+  end
+
+  post '/playlists' do  #creates a recipe
+    redirect_if_not_logged_in
+    @playlist = Playlist.create(params[:playlist])
+    # binding.pry
+    if @playlist.user_id == nil
+      @playlist.user_id = current_user.id
+    end
+      @playlist.save
+
+    redirect to "/playlists"
+  end
+
+
+  delete '/playlists/:id' do #destroy action
+    redirect_if_not_logged_in
+    @playlist = Playlist.find_by_id(params[:id])
+    @playlist.delete
+    redirect to '/playlists'
+  end
 end

@@ -1,0 +1,13 @@
+ <a href="songs/new"> Create a new playlist </a>
+<% if @tracks == nil %>
+<p> Have no saved songs yet </p>
+<% else %>
+<% @tracks.each do |track| %>
+  <div> <h3><%= track.name %><h3>
+
+    </div>
+<%end%>
+<a href="next_href"> next </a>
+<%end%>
+
+<a href="/logout"> logout </a>

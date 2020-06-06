@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # end
 
 
-  has_secure_password
+has_secure_password
 has_many :playlists
 validates :username, uniqueness: true
 validates :username, presence: true

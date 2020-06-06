@@ -1,5 +1,7 @@
 #MUST WORK ON
+require 'rack-flash'
 class PlaylistsController < ApplicationController
+ use Rack::Flash
 
   get '/playlists' do #works
      authenticate
@@ -16,10 +18,13 @@ class PlaylistsController < ApplicationController
      authenticate
      # binding.pry
      Playlist.create(name: params[:playlist][:name], user_id: current_user.id)
+     flash[:message] = "Successfully created song."
+     # redirect("/songs/#{@song.slug}")
      redirect '/playlists'
+
    end
 
-   get '/playlists/:id/edit' do
+   get '/playlists/:slug/edit' do
      @playlist = Playlist.find_by(id: params[:id])
      authorize(@playlist)
      # binding.pry

@@ -8,6 +8,7 @@ use Rack::MethodOverride
 use SongsController
 use UsersController
 use PlaylistsController
+use SessionsController
 # use ArtistsController
 # use GenresController
 run ApplicationController

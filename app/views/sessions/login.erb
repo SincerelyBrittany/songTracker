@@ -1,0 +1,15 @@
+<h1>Login to your favorite musical space!</h1>
+
+
+<% if @err %>
+    <p><%= @err %></p>
+<% end %>
+
+<form method="post" action="/login">
+  <input type="text" name="username" placeholder="Username:">
+  <input type="text" name="password" placeholder="Password:">
+
+  <input type="submit" value="submit">
+</form>
+
+<a href="/signup"> Not a user yet -- SIGN UP </a>

@@ -1,13 +1,23 @@
- <a href="playlists/new"> Create a new playlist </a>
+<a href="playlists/new"> Create a new playlist </a>
 <% if @playlists == nil %>
 <p> Have no playlist yet </p>
 <% else %>
 <% @playlists.each do |playlist| %>
-  <div> <h3><%= playlist.name %><h3>
-    <a href="/playlists/<%= playlist.id %>/edit"> Edit your <%= playlist.name %>  playlist </a> <br/>
-    <a href="/playlists/<%= playlist.id %>"> View your <%= playlist.name %> playlist </a>
-    </div>
+ <div> <h3><%= playlist.name %><h3>
+   <a href="/playlists/<%= playlist.id %>/edit"> Edit your <%= playlist.name %>  playlist </a> <br/>
+   <a href="/playlists/<%= playlist.id %>"> View your <%= playlist.name %> playlist </a>
+   </div>
 <%end%>
 <%end%>
 
-<a href="/logout"> logout </a>
+<form action="/logout" method="GET">
+ <button type="submit" value="submit">Logout</button>
+</form>
+
+
+
+
+
+<% @playlists.each do |playlist| %>
+  <li> <a href="/playlists/<%= playlist.slug %>"> <%= playlist.name %> </a></li>
+<% end %>

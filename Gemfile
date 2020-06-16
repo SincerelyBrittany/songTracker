@@ -33,9 +33,12 @@ gem "capybara"
 gem "pry"
 gem 'sqlite3', '~> 1.3.6'
 gem 'shotgun'
+gem 'iex-ruby-client'
 
 group :development do
   gem "tux"
 end
 
 gem "soundcloud", "~> 0.3.4"
+
+gem "httparty", "~> 0.18.0"

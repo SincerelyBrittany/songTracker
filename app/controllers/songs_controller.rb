@@ -5,18 +5,27 @@ class SongsController < ApplicationController
     erb :'songs/new'
   end
 
-  post '/songs' do #loads index page
-    @query = params[:song][:name]
-    all_tracks = APImanager.search_tracks("#{@query}")
-    @tracks = all_tracks.map do |track|
-      Song.new(name: track[:title], picture: track[:artwork_url], url: track[:permalink_url], genre: track[:genre])
-    end
-    @track_urls = all_tracks.map do |track|
-      track_url = track[:permalink_url]
-      embed_info = APImanager(CLIENT.get('/oembed', :url => track_url))
-    end
+  get '/songs' do #loads index page
+    # @query = params[:song][:name]
+    # all_tracks = APImanager.search_tracks("#{@query}")
+    # @display =[]
+    # @tracks = all_tracks.map do |track|
+    #   Song.new(name: track[:title], picture: track[:artwork_url], url: track[:permalink_url], genre: track[:genre])
+    #   @display << APImanager.display_track(track[:permalink_url])
+    # end
+
+    @tracks = APImanager.get_quote
+    # puts stream_url.location
     binding.pry
-    erb :'songs/index'
+    # binding.pry
+    #Song.display_track(url)
+      # @track_urls = all_tracks.map do |track|
+      # track_url = track[:permalink_url]
+      # embed_info = APImanager(CLIENT.get('/oembed', :url => track_url))
+
+      erb :'songs/index'
+    end
+
   end
 
   # get '/songs/:id' do  #loads show page
@@ -48,4 +57,3 @@ class SongsController < ApplicationController
   #   @song.delete
   #   redirect to '/songs'
   # end
-end

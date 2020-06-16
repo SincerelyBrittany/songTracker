@@ -1,7 +1,7 @@
 #MUST WORK ON
-require 'rack-flash'
+# require 'rack-flash'
 class PlaylistsController < ApplicationController
- use Rack::Flash
+ # use Rack::Flash
 
   get '/playlists' do #works
      authenticate

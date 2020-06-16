@@ -1,9 +1,12 @@
  <a href="songs/new"> Create a new playlist </a>
+ <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+
 <% if @tracks == nil %>
 <p> Have no saved songs yet </p>
 <% else %>
 <% @tracks.each do |track| %>
   <div> <h3><%= track.name %><h3>
+    <%= APImanager.display_track(track.url) %>
 
     </div>
 <%end%>
@@ -11,3 +14,9 @@
 <%end%>
 
 <a href="/logout"> logout </a>
+
+<!-- <audio controls>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio> -->

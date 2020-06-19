@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if u && u.authenticate(params[:password])
           #successful
           session[:user_id] = u.id
-          redirect '/playlists'
+          redirect :"/users/#{u.id}"
       else
           #unsuccessful
           @err = "Invalid Credentials"
@@ -23,15 +23,16 @@ class SessionsController < ApplicationController
 
 
   post '/signup' do
-      @u = User.new(:username => params[:username],
+      u = User.new(:username => params[:username],
                           :password => params[:password],
                           :email => params[:email],
                           :location => params[:location],
                           :age => params[:age])
-      if @u.save
+      if u.save
           #successful signup
-          session[:user_id] = @u.id
-          redirect "/playlists"
+          # binding.pry
+          session[:user_id] = u.id
+          redirect :"/users/#{u.id}"
       else
           #unsuccessful signup
           erb :'sessions/signup'

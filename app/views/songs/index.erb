@@ -10,8 +10,8 @@
   <% @playlists.each do |playlist| %>
     <label><%= playlist.name %></label>
     <input type="checkbox" id="title_<%=playlist.id%>" name="playlist[id][]" value="<%= playlist.id %>"><br>
-    <input type="hidden" id="title_<%=playlist.name%>" name="playlist[name]" value="<%= playlist.name %>">
-
+    # <input type="hidden" id="title_<%=playlist.name%>" name="playlist[name]" value="<%= playlist.name %>">
+    <input type="hidden" name="track[name]" value="<%= track.id %>">
   <%end%>
 
   <%end%>

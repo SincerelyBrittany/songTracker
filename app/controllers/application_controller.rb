@@ -13,24 +13,39 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  helpers do
+  self.helpers do
 
-      def current_user
-          User.find_by(id: session[:user_id])
-      end
+    def current_user
+       User.find_by(id: session[:user_id])
+     end
 
-      def logged_in?
-          !!current_user
-      end
+     def logged_in?
+       !!current_user
+     end
 
-      def authenticate
-          redirect '/login' if !logged_in?
-      end
+     def authenticate
+       redirect '/login' if !logged_in?
+     end
 
-      def authorize(playlist)
-          authenticate
-          redirect '/playlists' if playlist.user != current_user
-      end
+     def authorize_user(user)
+       authenticate
+       redirect '/playlists' if user != current_user
+     end
 
-  end
+     def authorize(playlist)
+        authenticate
+        redirect '/playlists' if playlist.user != current_user
+     end
+
+     def sanitize(params)
+        Sanitize.fragment(params)
+     end
+
+     def sanitize_hash(h)
+       hash = {}
+       h.each {|key, value| hash[key] = sanitize(value)}
+       hash
+     end
+   end
+
 end

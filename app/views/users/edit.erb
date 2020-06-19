@@ -1,0 +1,42 @@
+<div class="edit-account">
+
+<section class="error">
+    <% if @user && @user.errors.any? %>
+    <img src="/images/broken_glass.png">
+    <%@user.errors.full_messages.each do |m|%>
+        <p><%= m %></p>
+        <% end %>
+    <% end %>
+  </section>
+
+  <header>
+    <h2>Update Your Acccount</h2>
+  </header>
+
+  <section id="edit-account-form">
+    <form action="/users/<%=@user.slug%>" method='POST'>
+    <input type="hidden" name="_method" value="patch">
+      <label for="username">Username:
+        <input type="text" name="username" value="<%= @user.username %>"><br>
+      </label>
+
+      <br>
+
+      <label for="email">Email:
+        <input type="email" name="email" value="<%= @user.email %>"><br>
+      </label>
+
+      <br>
+
+      <label for="password">Password:
+      <input type="password" name="password" value="<%= @user.password %>"><br>
+      </label>
+
+      <br>
+
+      <div>
+        <input id="button" type="submit" value="Update">
+      </div>
+    </form>
+  </section>
+</div>

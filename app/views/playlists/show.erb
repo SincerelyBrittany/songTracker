@@ -1,5 +1,11 @@
  <!-- <a href="playlists/new"> Create a new playlist </a> -->
 
 <h1><%= @playlist.name %></h1>
+<h1><%= @playlist.id %></h1>
+<form class="" action="/songs/new" method="get">
+  <input type="hidden" name="id" value="<%= @playlist.id %>">
+  <input type="hidden" name="name" value="<%= @playlist.name %>">
+ <input type="submit" name="" value="Search for Songs to Playlist">
+</form>
 
 <a href="/playlists"> View all playlist </a>

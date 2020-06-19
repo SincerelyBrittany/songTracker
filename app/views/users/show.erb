@@ -1,2 +1,22 @@
 <h1> this is the users show page </h1>
 <a href="playlists/show"> View your playlist </a>
+
+<div class="user-show">
+
+  <header>
+    <h2>Hello <%=@user.username%>!</h2>
+  </header>
+
+  <section id="playlist-list">
+  <% @user.playlists.each do |playlist| %>
+    <h2>
+      <a href="/playlists/<%= playlist.id %>"><%= playlist.name %></a>
+    </h2>
+  <% end %>
+  </section>
+
+  <a href="/playlist"> View your playlist here </a>
+  <a href="/songs/new"> Search for songs here </a>
+
+
+</div>

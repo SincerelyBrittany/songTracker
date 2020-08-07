@@ -22,3 +22,15 @@
 
   </div>
 </div>
+
+
+
+
+
+<% @playlists.each do |playlist| %>
+  <aside><label><%= playlist.name %></label>
+  <p><input type="checkbox" id="title_<%=playlist.id%>" name="playlist[id][]" value="<%= playlist.id %>"></p>
+  <input type="hidden" id="title_<%=playlist.name%>" name="playlist[name]" value="<%= playlist.name %>">
+  <input type="hidden" name="track[name]" value="<%= track.id %>">
+  </aside>
+<%end%>

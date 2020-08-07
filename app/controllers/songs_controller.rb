@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 
   get '/songs/new' do #loads new form
-  
     if params.empty?
       erb :'songs/new'
     else

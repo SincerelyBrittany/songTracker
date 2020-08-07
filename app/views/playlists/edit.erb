@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-<h1> Update Playlist</h1>
-
-<h2>Edits for <%= @playlist.name %></h2>
-
-  <form action="/playlists/<%= @playlist.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Edit the Playlist's Name:</label>
-    <input type="text" name="playlist[name]" id= "playlist_name" value="<%= @playlist.name %>">
-
-    <input type="submit" value="Update Playlist">
-  </form>
-
-
-  <form method="POST" action="/playlists/<%= @playlist.id %>">
-    <input type="hidden" name="_method" value="delete" />
-    <input type="submit" value="delete"/>
-  </form>
-=======
   <h1> Update Playlist</h1>
 
   <h2>Edits for <%= @playlist.name %></h2>
@@ -33,4 +14,3 @@
       <input type="hidden" name="_method" value="delete" />
       <input type="submit" value="delete"/>
     </form>
->>>>>>> api_manager

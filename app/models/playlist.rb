@@ -2,9 +2,9 @@ class Playlist < ActiveRecord::Base
 
   belongs_to :user
   validates :name, presence: true
-  has_many :playlist_songs
-  has_many :songs, through: :playlist_songs
-  # has_many :songs
+  # has_many :playlist_songs
+  # has_many :songs, through: :playlist_songs
+  has_many :songs
 
 #   def slug
 #   name.downcase.gsub(" ","-")

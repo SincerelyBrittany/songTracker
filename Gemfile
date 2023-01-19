@@ -32,7 +32,7 @@ source "https://rubygems.org"
 # gem 'rdiscount' # for markdown support
 
 gem "sinatra"
-gem "activerecord", '<= 5.1'
+gem "activerecord", '<= 6.2'
 gem "sinatra-activerecord"
 gem "rake"
 gem "bcrypt"
